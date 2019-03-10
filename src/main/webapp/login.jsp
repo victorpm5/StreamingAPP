@@ -5,7 +5,7 @@
 
     <body>
         <h2>Pàgina bàsica de Login</h2>
-        <form action="LoginServlet" method="POST">
+        <form action="login" method="POST">
 
             Introdueix el teu nom d’usuari
             <input type="text" name="usuari"/><br>
@@ -15,6 +15,8 @@
 
             <input type="submit" value="submit">
         </form>
+
+        <a href="./register.jsp">Register</a>
 
         <%=request.getParameter("msg")!=null?request.getParameter("msg"):""%>
 
