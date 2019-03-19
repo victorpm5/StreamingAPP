@@ -8,13 +8,22 @@
 <form action="login" method="POST">
 
     Introdueix un nom d’usuari
-    <input type="text" name="usuari"/><br>
+    <input type="text" name="name"/><br>
+
+    Introdueix un nom d’usuari
+    <input type="text" name="surname"/><br>
+
+    Introdueix un nom d’usuari
+    <input type="text" name="email"/><br>
+
+    Introdueix un nom d’usuari
+    <input type="text" name="username"/><br>
 
     Introdueix una contrasenya
-    <input type="password" name="contrasenya"/>
+    <input type="password" name="password"/>
 
     Repeteix una contrasenya
-    <input type="password" name="contrasenya2"/>
+    <input type="password" name="password2"/>
 
     <input type="submit" name="register" value="REGISTER">
 </form>

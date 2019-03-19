@@ -16,7 +16,7 @@ public class DBConnection {
 
             Statement statement = con.createStatement();
             statement.setQueryTimeout(30);
-            statement.executeUpdate("create table if not exists person (id integer primary key, username string, password string)");
+            statement.executeUpdate("create table if not exists User (id integer primary key, name string, surname string, email string, username string, password string)");
 
             return con;
     }

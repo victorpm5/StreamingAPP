@@ -8,10 +8,10 @@
         <form action="login" method="POST">
 
             Introdueix el teu nom d’usuari
-            <input type="text" name="usuari"/><br>
+            <input type="text" name="username"/><br>
 
             Introdueix la teva contrasenya
-            <input type="password" name="contrasenya"/>
+            <input type="password" name="password"/>
 
             <input type="submit" name="login" value="LOGIN">
         </form>
