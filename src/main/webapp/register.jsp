@@ -5,7 +5,7 @@
 
 <body>
 <h2>Pàgina bàsica de Registre</h2>
-<form action="register" method="POST">
+<form action="login" method="POST">
 
     Introdueix un nom d’usuari
     <input type="text" name="usuari"/><br>
@@ -16,7 +16,7 @@
     Repeteix una contrasenya
     <input type="password" name="contrasenya2"/>
 
-    <input type="submit" value="submit">
+    <input type="submit" name="register" value="REGISTER">
 </form>
 
 <a href="./login.jsp">Login</a>
