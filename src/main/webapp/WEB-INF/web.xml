@@ -9,6 +9,11 @@
     <servlet-class>com.isdcm.streamingapp.servlets.ServletUsuarios</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>ServletListadoVid</servlet-name>
+    <servlet-class>com.isdcm.streamingapp.servlets.ServletListadoVid</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>ServletUsuarios</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -16,9 +21,12 @@
 
   <servlet-mapping>
     <servlet-name>ServletUsuarios</servlet-name>
-    <url-pattern>/register</url-pattern>
+    <url-pattern>/registroUsu</url-pattern>
   </servlet-mapping>
 
-
+  <servlet-mapping>
+    <servlet-name>ServletListadoVid</servlet-name>
+    <url-pattern>/listadoVid</url-pattern>
+  </servlet-mapping>
 
 </web-app>

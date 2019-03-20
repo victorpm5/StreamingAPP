@@ -14,6 +14,8 @@ import java.sql.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.isdcm.streamingapp.Utils.Constants.*;
+
 @WebServlet(name = "ServletUsuarios", urlPatterns = "/login")
 public class ServletUsuarios extends HttpServlet {
 
@@ -38,8 +40,11 @@ public class ServletUsuarios extends HttpServlet {
 			String password = request.getParameter("password");
 
             try {
-                UserService.CheckLogin(username, password);
-                response.sendRedirect("login.jsp?msg=WELCOME!!!!!");
+                String result = UserService.CheckLogin(username, password);
+                if(result.equals(BadPassword) || result.equals(UserNotExist)){
+                    response.sendRedirect("login.jsp?error=true&msg="+result+")");
+                }
+                else response.sendRedirect("listadoVid.jsp");
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SQLException e) {
@@ -62,18 +67,21 @@ public class ServletUsuarios extends HttpServlet {
 
                     try{
                         String result = UserService.NewUser(user);
-                        response.sendRedirect("register.jsp?msg=Nou Usuari!!!!!");
+                        if(result.equals(UserEmailAlreadyExist) || result.equals(UserNameAlreadyExist)) {
+                            response.sendRedirect("registroUsu.jsp?error=true&msg="+result+")");
+                        }
+                        else response.sendRedirect("listadoVid.jsp");
                     }
                     catch(Exception e) {
-                        response.sendRedirect("register.jsp?msg="+e.toString());
+                        response.sendRedirect("registroUsu.jsp?error=true&msg="+e.getMessage());
                     }
                 }
 		        else {
-                    response.sendRedirect("register.jsp?msg=El correu electronic no esta en el format pertinent");
+                    response.sendRedirect("registroUsu.jsp?error=true&msg="+EmailFormatNotCorrect);
                 }
             }
 		    else {
-                response.sendRedirect("register.jsp?msg=Les contrasenyes no coincideixen");
+                response.sendRedirect("registroUsu.jsp?error=true&msg="+PasswordsNotEqual);
             }
 		}
 

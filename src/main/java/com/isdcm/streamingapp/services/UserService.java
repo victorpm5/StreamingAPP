@@ -103,7 +103,7 @@ public class UserService {
 
             while(result.next() && response.equals(UserAvailable)){
                 if(result.getString("email").equals(user.getEmail())) response = UserEmailAlreadyExist;
-                else if(result.getString("username").equals(user.getEmail())) response = UserNameAlreadyExist;
+                else if(result.getString("username").equals(user.getUsername())) response = UserNameAlreadyExist;
             }
 
             return response;

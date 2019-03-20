@@ -6,6 +6,8 @@ public final class Constants {
     public static final String UserEmailAlreadyExist = "Email altready on use";
     public static final String UserNameAlreadyExist = "Username not available";
     public static final String UserAvailable = "User available";
+    public static final String EmailFormatNotCorrect = "The provided email is not in a correct format";
+    public static final String PasswordsNotEqual = "The provided passwords are not equal";
 
     //LOGIN
     public static final String BadPassword = "The provided password is not correct";

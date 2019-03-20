@@ -16,7 +16,7 @@
             <input type="submit" name="login" value="LOGIN">
         </form>
 
-        <a href="./register.jsp">Register</a>
+        <a href="./registroUsu.jsp">Register</a>
 
         <%=request.getParameter("msg")!=null?request.getParameter("msg"):""%>
 
