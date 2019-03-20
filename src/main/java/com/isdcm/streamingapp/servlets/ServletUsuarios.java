@@ -22,14 +22,6 @@ public class ServletUsuarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-       
-
-
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher a = request.getRequestDispatcher("login.jsp");
-		a.forward(request, response);
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,13 +37,11 @@ public class ServletUsuarios extends HttpServlet {
                     response.sendRedirect("login.jsp?error=true&msg="+result+")");
                 }
                 else response.sendRedirect("listadoVid.jsp");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            } catch (ClassNotFoundException | SQLException e) {
+                response.sendRedirect("login.jsp?error=true&msg="+e.getMessage());
             }
 
-		}
+        }
 		else if (request.getParameter("register")!=null){
 
 		    if(validPassword(request.getParameter("password"),request.getParameter("password2"))){
