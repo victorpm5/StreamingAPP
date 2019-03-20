@@ -7,19 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.isdcm.streamingapp.Utils.Constants.*;
+
 public class UserService {
 
     private static final String InsertUser = "INSERT INTO User(name,surname,email,username,password) VALUES (?, ?, ?, ?, ?)";
     private static final String CheckUserExisit = "SELECT * FROM User WHERE email= ? OR username= ?";
     private static final String CheckUserLogin = "SELECT * FROM User WHERE username= ?";
-
-    private static final String UserEmailAlreadyExist = "Email altready on use";
-    private static final String UserNameAlreadyExist = "Username not available";
-    private static final String UserAvailable = "User available";
-
-    private static final String BadPassword = "The provided password is not correct";
-    private static final String Welcome = "Welcome";
-    private static final String UserNotExist = "This username does not exist";
 
     public static String NewUser(User user) throws SQLException, ClassNotFoundException {
 

@@ -61,7 +61,7 @@ public class ServletUsuarios extends HttpServlet {
                     );
 
                     try{
-                        UserService.NewUser(user);
+                        String result = UserService.NewUser(user);
                         response.sendRedirect("register.jsp?msg=Nou Usuari!!!!!");
                     }
                     catch(Exception e) {
