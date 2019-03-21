@@ -7,13 +7,13 @@
 <h2>Pàgina bàsica de Registre</h2>
 <form action="login" method="POST">
 
-    Introdueix un nom d’usuari
+    Introdueix el teu nom
     <input type="text" name="name"/><br>
 
-    Introdueix un nom d’usuari
+    Introdueix el teu cognom
     <input type="text" name="surname"/><br>
 
-    Introdueix un nom d’usuari
+    Introdueix una adreça de correu electrònic
     <input type="text" name="email"/><br>
 
     Introdueix un nom d’usuari
