@@ -13,7 +13,7 @@
             Introdueix la teva contrasenya
             <input type="password" name="password"/>
 
-            <input type="submit" name="login" value="LOGIN">
+            <input type="submit" name="action" value="LOGIN">
         </form>
 
         <a href="./registroUsu.jsp">Register</a>

@@ -25,7 +25,7 @@
     Repeteix una contrasenya
     <input type="password" name="password2"/>
 
-    <input type="submit" name="register" value="REGISTER">
+    <input type="submit" name="action" value="REGISTER">
 </form>
 
 <a href="./login.jsp">Login</a>

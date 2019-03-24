@@ -3,7 +3,6 @@ package com.isdcm.streamingapp.servlets;
 import com.isdcm.streamingapp.models.User;
 import com.isdcm.streamingapp.services.UserService;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,13 +19,13 @@ import static com.isdcm.streamingapp.Utils.Constants.*;
 public class ServletUsuarios extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		if(request.getParameter("login")!=null){
+		if(request.getParameter("action").equals("LOGIN")){
 
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
@@ -42,7 +41,7 @@ public class ServletUsuarios extends HttpServlet {
             }
 
         }
-		else if (request.getParameter("register")!=null){
+		else if (request.getParameter("action").equals("REGISTER")){
 
 		    if(validPassword(request.getParameter("password"),request.getParameter("password2"))){
 
