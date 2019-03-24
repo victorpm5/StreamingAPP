@@ -31,7 +31,7 @@
     <input type="submit" name="register">
 </form>
 
-<a href="./listadoVid.jsp">Lista videos</a>
+<a href="./listadoVid">Lista videos</a>
 
 <%=request.getParameter("msg")!=null?request.getParameter("msg"):""%>
 
