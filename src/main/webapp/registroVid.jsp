@@ -8,10 +8,10 @@
 <form action="newvideo" method="POST">
 
     Introdueix titol del video
-    <input type="text" name="name"/><br>
+    <input type="text" name="title"/><br>
 
     Introdueix el nom de l'autor
-    <input type="text" name="surname"/><br>
+    <input type="text" name="autor"/><br>
 
     Introdueix una data de creació
     <input type="date" name="fechaCreacion"/><br>

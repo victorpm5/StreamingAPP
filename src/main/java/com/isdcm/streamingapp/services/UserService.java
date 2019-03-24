@@ -44,9 +44,7 @@ public class UserService {
 
             return response;
 
-        } catch (ClassNotFoundException e) {
-            throw e;
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             throw e;
         } finally {
             try {
@@ -73,12 +71,9 @@ public class UserService {
 
             statement.executeUpdate();
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             throw e;
-        } catch (SQLException e) {
-            throw e;
-        }
-        finally {
+        } finally {
             try {
                 DBConnection.closeConnection();
             } catch (SQLException e) {
