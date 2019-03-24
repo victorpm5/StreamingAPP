@@ -34,7 +34,7 @@ public class ServletUsuarios extends HttpServlet {
             try {
                 String result = UserService.CheckLogin(username, password);
                 if(result.equals(BadPassword) || result.equals(UserNotExist)){
-                    response.sendRedirect("login.jsp?error=true&msg="+result+")");
+                    response.sendRedirect("login.jsp?error=true&msg="+result);
                 }
                 else response.sendRedirect("listadoVid.jsp");
             } catch (ClassNotFoundException | SQLException e) {
@@ -58,7 +58,7 @@ public class ServletUsuarios extends HttpServlet {
                     try{
                         String result = UserService.NewUser(user);
                         if(result.equals(UserEmailAlreadyExist) || result.equals(UserNameAlreadyExist)) {
-                            response.sendRedirect("registroUsu.jsp?error=true&msg="+result+")");
+                            response.sendRedirect("registroUsu.jsp?error=true&msg="+result);
                         }
                         else response.sendRedirect("listadoVid.jsp");
                     }
