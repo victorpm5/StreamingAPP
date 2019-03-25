@@ -20,13 +20,13 @@
     <input type="number" step=".01" min="0" name="duracion" required/><br>
 
     Introdueix una descripcion
-    <input type="text" name="descripcion" required/>
+    <input type="text" name="descripcion" required/><br>
 
     Introdueix una descripcion
-    <input type="text" name="formato"/>
+    <input type="text" name="formato"/><br>
 
     Introdueix una descripcion
-    <input type="text" name="url"/>
+    <input type="text" name="url"/><br>
 
     <input type="submit" name="register">
 </form>

@@ -22,7 +22,6 @@ public class ServletRegistroVid extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
 
             Video video = new Video(
@@ -37,6 +36,7 @@ public class ServletRegistroVid extends HttpServlet {
             );
 
             VideoService.NewVideo(video);
+            response.sendRedirect("listadoVid");
 
         } catch (ParseException | SQLException | ClassNotFoundException e) {
             response.sendRedirect("registroVid.jsp?error=true&msg="+e.getMessage());
