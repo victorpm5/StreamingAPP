@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 import java.util.regex.Matcher;
@@ -35,7 +36,13 @@ public class ServletUsuarios extends HttpServlet {
                 if(result.equals(BadPassword) || result.equals(UserNotExist)){
                     response.sendRedirect("login.jsp?error=true&msg="+result);
                 }
-                else response.sendRedirect("listadoVid");
+                else{
+
+                    HttpSession sessioUsuari= request.getSession(true);
+                    sessioUsuari.setAttribute("usuari",username);
+
+                    response.sendRedirect("listadoVid");
+                }
             } catch (ClassNotFoundException | SQLException e) {
                 response.sendRedirect("login.jsp?error=true&msg="+e.getMessage());
             }
