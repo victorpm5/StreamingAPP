@@ -28,16 +28,16 @@
     Introdueix una data de creació
     <input type="date" name="fechaCreacion" required/><br>
 
-    Introdueix una duracion
+    Introdueix la duració
     <input type="number" step=".01" min="0" name="duracion" required/><br>
 
-    Introdueix una descripcion
+    Introdueix una descripció
     <input type="text" name="descripcion" required/><br>
 
-    Introdueix una descripcion
+    Introdueix el format
     <input type="text" name="formato"/><br>
 
-    Introdueix una descripcion
+    Introdueix una url
     <input type="text" name="url"/><br>
 
     <input type="submit" name="register">
