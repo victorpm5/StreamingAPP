@@ -7,14 +7,14 @@ public class Video {
     private String title;
     private String autor;
     private Date fechaCreacion;
-    private int duracion;
+    private float duracion;
     private int numReproducciones;
     private String descripcion;
     private String formato;
     private String url;
 
 
-    public Video(String title, String autor, Date fechaCreacion, int duracion, int numReproducciones, String descripcion, String formato, String url) {
+    public Video(String title, String autor, Date fechaCreacion, float duracion, int numReproducciones, String descripcion, String formato, String url) {
         this.title = title;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -49,7 +49,7 @@ public class Video {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public int getDuracion() {
+    public float getDuracion() {
         return duracion;
     }
 
