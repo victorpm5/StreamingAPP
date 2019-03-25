@@ -27,7 +27,8 @@ public class ServletListadoVid extends HttpServlet {
 
         //Si entrem aquí és pq no hi ha sessió
         if(StringUtils.isBlank(usuariLogged)){
-            response.sendRedirect("login.jsp");
+            RequestDispatcher a = request.getRequestDispatcher("login.jsp");
+            a.forward(request, response);
         }
 
 
