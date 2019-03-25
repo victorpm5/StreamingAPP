@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class VideoService {
@@ -24,7 +25,7 @@ public class VideoService {
 
             statement.setString(1, video.getTitle());
             statement.setString(2, video.getAutor());
-            statement.setString(3, String.valueOf(video.getFechaCreacion()));
+            statement.setString(3, String.valueOf(video.getFechaCreacion().getTime()));
             statement.setString(4, String.valueOf(video.getDuracion()));
             statement.setString(5, String.valueOf(video.getNumReproducciones()));
             statement.setString(6, String.valueOf(video.getDescripcion()));
@@ -61,8 +62,8 @@ public class VideoService {
                 Video video = new Video(
                         result.getString("title"),
                         result.getString("autor"),
-                        result.getDate("fechaCreacion"),
-                        result.getInt("duracion"),
+                        result.getTimestamp("fechaCreacion"),
+                        result.getFloat("duracion"),
                         result.getInt("numReproducciones"),
                         result.getString("descripcion"),
                         result.getString("formato"),

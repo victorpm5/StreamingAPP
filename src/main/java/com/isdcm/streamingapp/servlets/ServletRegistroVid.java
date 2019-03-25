@@ -22,14 +22,13 @@ public class ServletRegistroVid extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         try {
 
             Video video = new Video(
                     request.getParameter("title"),
                     request.getParameter("autor"),
                     formatter.parse(request.getParameter("fechaCreacion")),
-                    Integer.parseInt(request.getParameter("duracion")),
+                    Float.parseFloat(request.getParameter("duracion")),
                     0,
                     request.getParameter("descripcion"),
                     request.getParameter("formato"),
@@ -37,6 +36,7 @@ public class ServletRegistroVid extends HttpServlet {
             );
 
             VideoService.NewVideo(video);
+            response.sendRedirect("listadoVid");
 
         } catch (ParseException | SQLException | ClassNotFoundException e) {
             response.sendRedirect("registroVid.jsp?error=true&msg="+e.getMessage());
