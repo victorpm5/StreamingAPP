@@ -66,7 +66,13 @@ public class ServletUsuarios extends HttpServlet {
                         if(result.equals(UserEmailAlreadyExist) || result.equals(UserNameAlreadyExist)) {
                             response.sendRedirect("registroUsu.jsp?error=true&msg="+result);
                         }
-                        else response.sendRedirect("listadoVid");
+                        else {
+
+                            HttpSession sessioUsuari= request.getSession(true);
+                            sessioUsuari.setAttribute("usuari",user.getUsername());
+
+                            response.sendRedirect("listadoVid");
+                        }
                     }
                     catch(Exception e) {
                         response.sendRedirect("registroUsu.jsp?error=true&msg="+e.getMessage());

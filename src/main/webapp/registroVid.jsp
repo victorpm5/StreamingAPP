@@ -1,9 +1,21 @@
+<%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
 <head>
 </head>
 
 <body>
+
+<%  HttpSession sessioUsuari= (HttpSession) request.getSession();
+    String usuariLogged = (String) sessioUsuari.getAttribute("usuari");
+
+    //Si entrem aquí és pq no hi ha sessió
+    if(StringUtils.isBlank(usuariLogged)){
+        response.sendRedirect("login.jsp");
+    };
+%>
+
+
 <h2>Pàgina bàsica de Registre Video</h2>
 <form action="newvideo" method="POST">
 
