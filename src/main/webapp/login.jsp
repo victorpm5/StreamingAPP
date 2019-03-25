@@ -2,9 +2,11 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
     <head>
+        <link href="static/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
 
-    <body>
+    <body class="text-center">
 
         <%  HttpSession sessioUsuari= (HttpSession) request.getSession();
             String usuariLogged = (String) sessioUsuari.getAttribute("usuari");
@@ -15,16 +17,16 @@
             };
         %>
 
-        <h2>Pàgina bàsica de Login</h2>
-        <form action="login" method="POST">
+        <form class="form-signin" action="login" method="POST">
 
-            Introdueix el teu nom d’usuari
-            <input type="text" name="username"/><br>
+            <h1 class="h3 mb-3 font-weight-normal">Inicia sessió</h1>
 
-            Introdueix la teva contrasenya
-            <input type="password" name="password"/>
+            <label for="inputEmail" class="sr-only"> Introdueix el teu nom d’usuari</label>
+            <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Nom d'usuari" required autofocus>
+            <label for="inputPassword" class="sr-only">Introdueix la teva contrasenya</label>
+            <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Contrasenya" required>
 
-            <input type="submit" name="action" value="LOGIN">
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="action" value="LOGIN">Sign in</button>
         </form>
 
         <a href="./registroUsu.jsp">Register</a>
