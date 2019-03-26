@@ -2,6 +2,11 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
 <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="css/custom.css" rel="stylesheet">
+    <%--<link href="css/fontawesome.min.css" rel="stylesheet">--%>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <%--<link href="css/all.css" rel="stylesheet">--%>
 </head>
 
 <body>
@@ -14,34 +19,70 @@
             response.sendRedirect("listadoVid");
         };
     %>
-    
-    <h2>Pàgina bàsica de Registre</h2>
-    <form action="login" method="POST">
 
-        Introdueix el teu nom
-        <input type="text" name="name"/><br>
+    <div class="container login-container">
 
-        Introdueix el teu cognom
-        <input type="text" name="surname"/><br>
+        <div class="login-form">
 
-        Introdueix una adreça de correu electrònic
-        <input type="text" name="email"/><br>
+            <h2>Crea una compta</h2>
 
-        Introdueix un nom d’usuari
-        <input type="text" name="username"/><br>
+            <form action="login" method="POST">
 
-        Introdueix una contrasenya
-        <input type="password" name="password"/>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="name" class="form-control" placeholder="Introdueix el teu nom" type="text">
+                </div>
 
-        Repeteix una contrasenya
-        <input type="password" name="password2"/>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="surname" class="form-control" placeholder="Introdueix el teu cognom" type="text">
+                </div>
 
-        <input type="submit" name="action" value="REGISTER">
-    </form>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                    </div>
+                    <input name="email" class="form-control" placeholder="Introdueix el teu email" type="email">
+                </div>
 
-    <a href="./login.jsp">Login</a>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                    </div>
+                    <input name="username" class="form-control" placeholder="Introdueix un nom d'usuari" type="text">
+                </div>
 
-    <%=request.getParameter("msg")!=null?request.getParameter("msg"):""%>
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password" class="form-control" placeholder="Introdueix una contrasenya" type="password">
+                </div>
+
+                <div class="form-group input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                    </div>
+                    <input name="password2" class="form-control" placeholder="Repeteix la contrasenya" type="password">
+                </div>
+
+                <div class="form-group">
+                    <button name="action" value="REGISTER" type="submit" class="btn btn-primary btn-block"> Registrar-se</button>
+                </div>
+
+                <p class="text-center">Ja tens una compta? <a href="./login.jsp">Inicia sessió</a> </p>
+
+            </form>
+
+            <%=request.getParameter("msg")!=null?request.getParameter("msg"):""%>
+
+        </div>
+
+    </div>
 
 </body>
 
