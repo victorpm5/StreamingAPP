@@ -2,6 +2,11 @@
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <html>
 <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <%--<link href="css/fontawesome.min.css" rel="stylesheet">--%>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <%--<link href="css/all.css" rel="stylesheet">--%>
 </head>
 
 <body>
@@ -15,35 +20,71 @@
     };
 %>
 
+<div class="container login-container">
+    <div class="login-form">
+        <h2>Registra un vídeo</h2>
 
-<h2>Pàgina bàsica de Registre Video</h2>
-<form action="newvideo" method="POST">
+        <form action="newvideo" method="POST">
 
-    Introdueix titol del video
-    <input type="text" name="title" required/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-heading"></i> </span>
+                </div>
+                <input name="title" class="form-control" placeholder="Introdueix el títol del vídeo" type="text">
+            </div>
 
-    Introdueix el nom de l'autor
-    <input type="text" name="autor" required/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input name="autor" class="form-control" placeholder="Introdueix el seu autor" type="text">
+            </div>
 
-    Introdueix una data de creació
-    <input type="date" name="fechaCreacion" required/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
+                </div>
+                <input name="fechaCreacion" class="form-control" placeholder="Introdueix la data de creació" type="date">
+            </div>
 
-    Introdueix la duració
-    <input type="number" step=".01" min="0" name="duracion" required/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-clock"></i> </span>
+                </div>
+                <input name="duracion" class="form-control" placeholder="Introdueix la seva duració" type="number" step=".01" min="0" >
+            </div>
 
-    Introdueix una descripció
-    <input type="text" name="descripcion" required/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-align-justify"></i> </span>
+                </div>
+                <textarea name="descripcion" class="form-control" placeholder="Introdueix la descripció del vídeo" type="text"></textarea>
+            </div>
 
-    Introdueix el format
-    <input type="text" name="formato"/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-file-video"></i> </span>
+                </div>
+                <input name="formato" class="form-control" placeholder="Introdueix el fornmat del vídeo" type="text">
+            </div>
 
-    Introdueix una url
-    <input type="text" name="url"/><br>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-link"></i> </span>
+                </div>
+                <input name="url" class="form-control" placeholder="Introdueix l'enllaç al vídeo" type="text">
+            </div>
 
-    <input type="submit" name="register">
-</form>
+            <div class="form-group">
+                <button name="register" type="submit" class="btn btn-primary btn-block">Registrar vídeo</button>
+            </div>
 
-<a href="./listadoVid">Lista videos</a>
+        </form>
+
+        <a href="./listadoVid">Llista de vídeos</a>
+
+    </div>
+</div>
 
 <%=request.getParameter("msg")!=null?request.getParameter("msg"):""%>
 

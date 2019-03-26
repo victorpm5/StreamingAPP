@@ -13,3 +13,12 @@
 .login-container form{
     padding: 5%;
 }
+
+.video-table{
+    border: 1px solid rgb(222, 226, 230);
+}
+
+.video-list-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

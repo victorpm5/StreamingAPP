@@ -6,9 +6,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="text-center">
 
     <%  HttpSession sessioUsuari= (HttpSession) request.getSession();
         String usuariLogged = (String) sessioUsuari.getAttribute("usuari");
@@ -19,34 +21,43 @@
         };
     %>
 
+    <div class="container video-list-container">
+        <div class="login-form">
 
-    <table>
-        <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Publish Date</th>
-            <th>Duration</th>
-            <th>Visualizations</th>
-            <th>Description</th>
-            <th>Format</th>
-            <th>Url</th>
-        </tr>
-        <% List<Video> videos = (List<Video>)request.getAttribute("videos"); %>
-        <% SimpleDateFormat dt = new SimpleDateFormat("dd-mm-yyyy"); %>
-        <% for(int i = 0; i < videos.size(); i+=1) { %>
-            <tr>
-                <td><%=videos.get(i).getTitle()%></td>
-                <td><%=videos.get(i).getAutor()%></td>
-                <td><%=dt.format(videos.get(i).getFechaCreacion())%></td>
-                <td><%=videos.get(i).getDuracion()%></td>
-                <td><%=videos.get(i).getNumReproducciones()%></td>
-                <td><%=videos.get(i).getDescripcion()%></td>
-                <td><%=videos.get(i).getFormato()%></td>
-                <td><%=videos.get(i).getUrl()%></td>
-            </tr>
-        <% } %>
-    </table>
+            <h2>Llistat de vídeos</h2>
 
-<a href="./registroVid.jsp">Add Video</a>
+            <table class="table video-table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Títol</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Data de Publicació</th>
+                    <th scope="col">Duració</th>
+                    <th scope="col">Visualitzacions</th>
+                    <th scope="col">Descripció</th>
+                    <th scope="col">Format</th>
+                    <th scope="col">Url</th>
+                </tr>
+                </thead>
+                <% List<Video> videos = (List<Video>)request.getAttribute("videos"); %>
+                <% SimpleDateFormat dt = new SimpleDateFormat("dd-mm-yyyy"); %>
+                <% for(int i = 0; i < videos.size(); i+=1) { %>
+                <tr>
+                    <td><%=videos.get(i).getTitle()%></td>
+                    <td><%=videos.get(i).getAutor()%></td>
+                    <td><%=dt.format(videos.get(i).getFechaCreacion())%></td>
+                    <td><%=videos.get(i).getDuracion()%> min</td>
+                    <td><%=videos.get(i).getNumReproducciones()%></td>
+                    <td><%=videos.get(i).getDescripcion()%></td>
+                    <td><%=videos.get(i).getFormato()%></td>
+                    <td><a target="_blank" href="<%=videos.get(i).getUrl()%>">Visualitzar!</a></td>
+                </tr>
+                <% } %>
+            </table>
+
+            <a href="./registroVid.jsp">Afegeix un vídeo!</a>
+
+        </div>
+    </div>
 
 </html>
