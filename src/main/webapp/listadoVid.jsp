@@ -31,7 +31,7 @@
                 <tr>
                     <th scope="col">Títol</th>
                     <th scope="col">Autor</th>
-                    <th scope="col">Data de Publicació</th>
+                    <th scope="col">Data de Creació</th>
                     <th scope="col">Duració</th>
                     <th scope="col">Visualitzacions</th>
                     <th scope="col">Descripció</th>

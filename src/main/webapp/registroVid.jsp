@@ -40,7 +40,7 @@
                 <input name="autor" class="form-control" placeholder="Introdueix el seu autor" type="text" required>
             </div>
 
-            Introdueix la data de publicació:
+            Introdueix la data de creació:
             <div class="form-group input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text"> <i class="fa fa-calendar"></i> </span>
