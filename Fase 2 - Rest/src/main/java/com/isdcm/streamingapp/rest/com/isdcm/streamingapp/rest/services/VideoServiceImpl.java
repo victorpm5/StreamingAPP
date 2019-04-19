@@ -33,6 +33,7 @@ public class VideoServiceImpl implements VideoService {
             while(result.next()){
 
                 Video video = new Video(
+                        result.getInt("id"),
                         result.getString("title"),
                         result.getString("autor"),
                         result.getTimestamp("fechaCreacion"),

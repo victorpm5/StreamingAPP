@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Video {
 
+    private Integer id;
     private String title;
     private String autor;
     private Date fechaCreacion;
@@ -14,7 +15,8 @@ public class Video {
     private String url;
 
 
-    public Video(String title, String autor, Date fechaCreacion, float duracion, int numReproducciones, String descripcion, String formato, String url) {
+    public Video(Integer id, String title, String autor, Date fechaCreacion, float duracion, int numReproducciones, String descripcion, String formato, String url) {
+        this.id = id;
         this.title = title;
         this.autor = autor;
         this.fechaCreacion = fechaCreacion;
@@ -87,5 +89,13 @@ public class Video {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }
