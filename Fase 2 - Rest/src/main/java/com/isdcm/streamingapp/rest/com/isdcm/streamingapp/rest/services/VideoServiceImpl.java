@@ -16,6 +16,7 @@ import java.util.List;
 public class VideoServiceImpl implements VideoService {
 
     private static final String GetAllVideos = "SELECT * FROM Video";
+    private static final String UPDATE_REPRODUCCIONS = "UPDATE Video SET numReproducciones = numReproducciones + 1 where id = ?";
 
     @Override
     public  List<Video> GetVideos(){
@@ -60,6 +61,38 @@ public class VideoServiceImpl implements VideoService {
         }
 
         return videos;
+    }
+
+    @Override
+    public Boolean augmentaReproduccions(Integer id) {
+
+        Boolean resultat = Boolean.FALSE;
+
+        try {
+            Connection conn = DBConnection.getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(UPDATE_REPRODUCCIONS);
+            statement.setQueryTimeout(30);
+
+            statement.setString(1, String.valueOf(id));
+
+            statement.executeUpdate();
+
+            resultat = Boolean.TRUE;
+
+        } catch (ClassNotFoundException | SQLException e) {
+
+            System.out.println("holii, ha habido un error " + e);
+
+        } finally {
+            try {
+                DBConnection.closeConnection();
+            } catch (SQLException e) {
+                System.out.println("holii, ha habido un error " + e);
+            }
+        }
+
+        return resultat;
     }
 
 }

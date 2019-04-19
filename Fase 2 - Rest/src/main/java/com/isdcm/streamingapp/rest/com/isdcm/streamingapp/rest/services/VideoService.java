@@ -8,4 +8,6 @@ public interface VideoService {
 
     List<Video> GetVideos();
 
+    Boolean augmentaReproduccions(Integer id);
+
 }
