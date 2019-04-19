@@ -43,4 +43,18 @@ public class VideoEndpoint {
 
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterVideosByAutorRequest")
+    @ResponsePayload
+    public FilterVideosByAutorResponse getVideo(@RequestPayload FilterVideosByAutorRequest request) {
+
+        FilterVideosByAutorResponse response = new FilterVideosByAutorResponse();
+
+        List<Video> videos = VideoService.GetVideosByAutor(request.getAutor());
+        for(int i = 0; i< videos.size(); ++i){
+            response.getVideo().add(videos.get(i));
+        }
+
+        return response;
+    }
 }

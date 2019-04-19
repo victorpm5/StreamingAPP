@@ -17,13 +17,23 @@ public class VideoService {
 
     private static final String GetAllVideos = "SELECT * FROM Video";
     private static final String GetVideosByTitle = "SELECT * FROM Video WHERE title=?";
+    private static final String GetVideosByAutor = "SELECT * FROM Video WHERE autor=?";
+    private static final String GetVideosByDate = "SELECT * FROM Video WHERE fechaCreacion=?";
 
     public static List<Video> GetVideosByTitle(String title){
+        return getVideos(title, GetVideosByTitle);
+    }
+
+    public static List<Video> GetVideosByAutor(String autor){
+        return getVideos(autor, GetVideosByAutor);
+    }
+
+    private static List<Video> getVideos(String title, String getVideosByTitle) {
         List<Video> videos = new ArrayList<Video>();
         try {
             Connection conn = DBConnection.getConnection();
 
-            PreparedStatement statement = conn.prepareStatement(GetVideosByTitle);
+            PreparedStatement statement = conn.prepareStatement(getVideosByTitle);
             statement.setQueryTimeout(30);
 
             statement.setString(1,title);
