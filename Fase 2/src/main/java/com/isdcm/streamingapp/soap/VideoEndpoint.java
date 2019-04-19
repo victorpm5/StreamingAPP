@@ -57,4 +57,18 @@ public class VideoEndpoint {
 
         return response;
     }
+
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterVideosByDateRequest")
+    @ResponsePayload
+    public FilterVideosByDateResponse getVideo(@RequestPayload FilterVideosByDateRequest request) {
+
+        FilterVideosByDateResponse response = new FilterVideosByDateResponse();
+
+        List<Video> videos = VideoService.GetVideosByDate(request.getDate());
+        for(int i = 0; i< videos.size(); ++i){
+            response.getVideo().add(videos.get(i));
+        }
+
+        return response;
+    }
 }

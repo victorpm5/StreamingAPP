@@ -74,4 +74,52 @@ public class VideoService {
         return videos;
     }
 
+    public static List<Video> GetVideosByDate(XMLGregorianCalendar xmldate) {
+        List<Video> videos = new ArrayList<Video>();
+        try {
+            Connection conn = DBConnection.getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(GetVideosByDate);
+            statement.setQueryTimeout(30);
+
+            Date date = xmldate.toGregorianCalendar().getTime();
+
+            statement.setString(1,String.valueOf(date.getTime()));
+
+            ResultSet result = statement.executeQuery();
+
+            while(result.next()){
+
+                Date creacion = result.getTimestamp("fechaCreacion");
+
+                GregorianCalendar gCal = new GregorianCalendar();
+                gCal.setTime(creacion);
+                XMLGregorianCalendar gDateUnformated = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCal);
+
+                Video video = new Video();
+                video.setTitle(result.getString("title"));
+                video.setAutor(result.getString("autor"));
+                video.setFechaCreacion(gDateUnformated);
+                video.setDuracion(result.getFloat("duracion"));
+                video.setNumReproducciones(result.getInt("numReproducciones"));
+                video.setDescripcion(result.getString("descripcion"));
+                video.setFormato(result.getString("formato"));
+                video.setUrl(result.getString("url"));
+
+                videos.add(video);
+            }
+
+        } catch (ClassNotFoundException | SQLException | DatatypeConfigurationException e) {
+            System.out.println("holii, ha habido un error " + e);
+        } finally {
+            try {
+                DBConnection.closeConnection();
+            } catch (SQLException e) {
+                System.out.println("holii, ha habido un error " + e);
+            }
+        }
+
+        return videos;
+    }
+
 }
