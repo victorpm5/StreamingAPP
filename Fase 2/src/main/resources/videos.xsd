@@ -17,6 +17,58 @@
         </xs:complexType>
     </xs:element>
 
+
+    <xs:element name="filterVideosByTitleRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByTitleResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="video" minOccurs="0" maxOccurs="unbounded" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="filterVideosByAutorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="autor" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="filterVideosByAutorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="video" minOccurs="0" maxOccurs="unbounded" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByDateRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="date" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByDateResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="video" minOccurs="0" maxOccurs="unbounded" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
     <xs:complexType name="video">
         <xs:sequence>
             <xs:element name="title" type="xs:string"/>
