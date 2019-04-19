@@ -1,7 +1,6 @@
-package com.isdcm.streamingapp.soap;
+package com.example.demo;
 
-import com.isdcm.streamingapp.models.GetVideoRequest;
-import com.isdcm.streamingapp.models.GetVideoResponse;
+import io.spring.guides.gs_producing_web_service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -10,7 +9,7 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
 public class VideoEndpoint {
-    private static final String NAMESPACE_URI = "getVideo";
+    private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
 
     private VideoRepository videoRepository;
 
@@ -23,7 +22,7 @@ public class VideoEndpoint {
     @ResponsePayload
     public GetVideoResponse getVideo(@RequestPayload GetVideoRequest request) {
         GetVideoResponse response = new GetVideoResponse();
-        response.setCountry(videoRepository.findVideo(request.getTitle()));
+        response.setVideo(videoRepository.findVideo(request.getName()));
 
         return response;
     }

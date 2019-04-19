@@ -1,13 +1,13 @@
-package com.isdcm.streamingapp.soap;
+package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SoapApplication {
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SoapApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 
 }

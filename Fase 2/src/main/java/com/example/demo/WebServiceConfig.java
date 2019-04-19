@@ -1,4 +1,4 @@
-package com.isdcm.streamingapp.soap;
+package com.example.demo;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -24,17 +24,17 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = "videos")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema videosSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("VideosPort");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace("http://spring.io/guides/gs-producing-web-service");
-        wsdl11Definition.setSchema(videosSchema);
+        wsdl11Definition.setSchema(countriesSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema videosSchema() {
+    public XsdSchema countriesSchema() {
         return new SimpleXsdSchema(new ClassPathResource("videos.xsd"));
     }
 }
