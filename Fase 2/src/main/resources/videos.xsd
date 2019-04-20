@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
+           targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
+
+    <xs:element name="getVideoRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getVideoResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="video" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="video">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="autor" type="xs:string"/>
+            <xs:element name="fechaCreacion" type="xs:date"/>
+            <xs:element name="duracion" type="xs:float"/>
+            <xs:element name="numReproducciones" type="xs:int"/>
+            <xs:element name="descripcion" type="xs:string"/>
+            <xs:element name="formato" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

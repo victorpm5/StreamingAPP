@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class DBConnection {
 
     private static Connection con;
-    private static String url = "jdbc:sqlite:streaming.db";
+    private static String url = "jdbc:sqlite:C:\\Users\\Public/streaming.db";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
             Class.forName("org.sqlite.JDBC");
@@ -17,7 +17,7 @@ public class DBConnection {
             Statement statement = con.createStatement();
             statement.setQueryTimeout(30);
             statement.executeUpdate("create table if not exists User (id integer primary key, name string, surname string, email string, username string, password string)");
-            statement.executeUpdate("create table if not exists Video (id real primary key, title string, autor string, fechaCreacion date, duracion integer, numReproducciones integer, descripcion string, formato string, url string)");
+            statement.executeUpdate("create table if not exists Video (id integer primary key, title string, autor string, fechaCreacion date, duracion integer, numReproducciones integer, descripcion string, formato string, url string)");
 
             return con;
     }

@@ -36,6 +36,7 @@ public class VideoService {
 
         } catch (ClassNotFoundException | SQLException e) {
             throw e;
+
         } finally {
             try {
                 DBConnection.closeConnection();
@@ -60,6 +61,7 @@ public class VideoService {
             while(result.next()){
 
                 Video video = new Video(
+                        result.getInt("id"),
                         result.getString("title"),
                         result.getString("autor"),
                         result.getTimestamp("fechaCreacion"),
