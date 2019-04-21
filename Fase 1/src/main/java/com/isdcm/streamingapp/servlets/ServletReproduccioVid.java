@@ -2,6 +2,7 @@ package com.isdcm.streamingapp.servlets;
 
 import com.isdcm.streamingapp.services.ReproduccioRestService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +18,14 @@ public class ServletReproduccioVid extends HttpServlet {
 
         Integer id = Integer.parseInt(request.getParameter("id"));
         String url = request.getParameter("url");
+        String titol = request.getParameter("titol");
 
         ReproduccioRestService.reprodueix(id);
 
-        response.sendRedirect("listadoVid");
+        request.setAttribute("url", url.replace("watch?v=","embed/"));
+        request.setAttribute("titol", titol);
+        RequestDispatcher a = request.getRequestDispatcher("reproduccio.jsp");
+        a.forward(request, response);
     }
 
 }

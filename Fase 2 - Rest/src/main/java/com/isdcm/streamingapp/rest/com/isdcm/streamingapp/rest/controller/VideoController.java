@@ -33,6 +33,8 @@ public class VideoController {
     public ResponseEntity<?> actualitzaReproduccions(
             @PathVariable final Integer id) {
 
+		System.out.println("Reproducció video amb id: " + id);
+
 	    Boolean resultat = videoService.augmentaReproduccions(id);
 
 	    if (resultat) return new ResponseEntity<>(HttpStatus.OK);
