@@ -18,7 +18,30 @@ public class VideoService {
     private static final String GetAllVideos = "SELECT * FROM Video";
     private static final String GetVideosByTitle = "SELECT * FROM Video WHERE title=?";
     private static final String GetVideosByAutor = "SELECT * FROM Video WHERE autor=?";
-    private static final String GetVideosByDate = "SELECT * FROM Video WHERE fechaCreacion=?";
+    private static final String GetVideosByDate = "SELECT * FROM Video WHERE strftime('%Y',datetime(fechaCreacion/1000, 'unixepoch', 'localtime'))=?";
+
+    public static List<Video> GetVideos(){
+        List<Video> videos = new ArrayList<Video>();
+        try {
+            Connection conn = DBConnection.getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(GetAllVideos);
+            statement.setQueryTimeout(30);
+
+            executeGetVideosQuery(videos, statement);
+
+        } catch (ClassNotFoundException | SQLException | DatatypeConfigurationException e) {
+            System.out.println("holii, ha habido un error " + e);
+        } finally {
+            try {
+                DBConnection.closeConnection();
+            } catch (SQLException e) {
+                System.out.println("holii, ha habido un error " + e);
+            }
+        }
+
+        return videos;
+    }
 
     public static List<Video> GetVideosByTitle(String title){
         return getVideos(title, GetVideosByTitle);
@@ -26,6 +49,31 @@ public class VideoService {
 
     public static List<Video> GetVideosByAutor(String autor){
         return getVideos(autor, GetVideosByAutor);
+    }
+
+    public static List<Video> GetVideosByDate(int year) {
+        List<Video> videos = new ArrayList<Video>();
+        try {
+            Connection conn = DBConnection.getConnection();
+
+            PreparedStatement statement = conn.prepareStatement(GetVideosByDate);
+            statement.setQueryTimeout(30);
+
+            statement.setString(1,String.valueOf(year));
+
+            executeGetVideosQuery(videos, statement);
+
+        } catch (ClassNotFoundException | SQLException | DatatypeConfigurationException e) {
+            System.out.println("holii, ha habido un error " + e);
+        } finally {
+            try {
+                DBConnection.closeConnection();
+            } catch (SQLException e) {
+                System.out.println("holii, ha habido un error " + e);
+            }
+        }
+
+        return videos;
     }
 
     private static List<Video> getVideos(String title, String getVideosByTitle) {
@@ -38,28 +86,7 @@ public class VideoService {
 
             statement.setString(1,title);
 
-            ResultSet result = statement.executeQuery();
-
-            while(result.next()){
-
-                Date creacion = result.getTimestamp("fechaCreacion");
-
-                GregorianCalendar gCal = new GregorianCalendar();
-                gCal.setTime(creacion);
-                XMLGregorianCalendar gDateUnformated = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCal);
-
-                Video video = new Video();
-                video.setTitle(result.getString("title"));
-                video.setAutor(result.getString("autor"));
-                video.setFechaCreacion(gDateUnformated);
-                video.setDuracion(result.getFloat("duracion"));
-                video.setNumReproducciones(result.getInt("numReproducciones"));
-                video.setDescripcion(result.getString("descripcion"));
-                video.setFormato(result.getString("formato"));
-                video.setUrl(result.getString("url"));
-
-                videos.add(video);
-            }
+            executeGetVideosQuery(videos, statement);
 
         } catch (ClassNotFoundException | SQLException | DatatypeConfigurationException e) {
             System.out.println("holii, ha habido un error " + e);
@@ -74,52 +101,29 @@ public class VideoService {
         return videos;
     }
 
-    public static List<Video> GetVideosByDate(XMLGregorianCalendar xmldate) {
-        List<Video> videos = new ArrayList<Video>();
-        try {
-            Connection conn = DBConnection.getConnection();
+    private static void executeGetVideosQuery(List<Video> videos, PreparedStatement statement) throws SQLException, DatatypeConfigurationException {
+        ResultSet result = statement.executeQuery();
 
-            PreparedStatement statement = conn.prepareStatement(GetVideosByDate);
-            statement.setQueryTimeout(30);
+        while(result.next()){
 
-            Date date = xmldate.toGregorianCalendar().getTime();
+            Date creacion = result.getTimestamp("fechaCreacion");
 
-            statement.setString(1,String.valueOf(date.getTime()));
+            GregorianCalendar gCal = new GregorianCalendar();
+            gCal.setTime(creacion);
+            XMLGregorianCalendar gDateUnformated = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCal);
 
-            ResultSet result = statement.executeQuery();
+            Video video = new Video();
+            video.setTitle(result.getString("title"));
+            video.setAutor(result.getString("autor"));
+            video.setFechaCreacion(gDateUnformated);
+            video.setDuracion(result.getFloat("duracion"));
+            video.setNumReproducciones(result.getInt("numReproducciones"));
+            video.setDescripcion(result.getString("descripcion"));
+            video.setFormato(result.getString("formato"));
+            video.setUrl(result.getString("url"));
 
-            while(result.next()){
-
-                Date creacion = result.getTimestamp("fechaCreacion");
-
-                GregorianCalendar gCal = new GregorianCalendar();
-                gCal.setTime(creacion);
-                XMLGregorianCalendar gDateUnformated = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCal);
-
-                Video video = new Video();
-                video.setTitle(result.getString("title"));
-                video.setAutor(result.getString("autor"));
-                video.setFechaCreacion(gDateUnformated);
-                video.setDuracion(result.getFloat("duracion"));
-                video.setNumReproducciones(result.getInt("numReproducciones"));
-                video.setDescripcion(result.getString("descripcion"));
-                video.setFormato(result.getString("formato"));
-                video.setUrl(result.getString("url"));
-
-                videos.add(video);
-            }
-
-        } catch (ClassNotFoundException | SQLException | DatatypeConfigurationException e) {
-            System.out.println("holii, ha habido un error " + e);
-        } finally {
-            try {
-                DBConnection.closeConnection();
-            } catch (SQLException e) {
-                System.out.println("holii, ha habido un error " + e);
-            }
+            videos.add(video);
         }
-
-        return videos;
     }
 
 }

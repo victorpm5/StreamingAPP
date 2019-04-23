@@ -8,9 +8,10 @@
 
 package io.spring.guides.gs_producing_web_service;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
@@ -25,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="autor" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="video" type="{http://spring.io/guides/gs-producing-web-service}video" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,36 +37,40 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "autor"
+    "video"
 })
-@XmlRootElement(name = "filterVideosByAutorRequest")
-public class FilterVideosByAutorRequest {
+@XmlRootElement(name = "filterVideosByYearResponse")
+public class FilterVideosByYearResponse {
 
-    @XmlElement(required = true)
-    protected String autor;
-
-    /**
-     * Gets the value of the autor property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getAutor() {
-        return autor;
-    }
+    protected List<Video> video;
 
     /**
-     * Sets the value of the autor property.
+     * Gets the value of the video property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the video property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getVideo().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Video }
+     * 
+     * 
      */
-    public void setAutor(String value) {
-        this.autor = value;
+    public List<Video> getVideo() {
+        if (video == null) {
+            video = new ArrayList<Video>();
+        }
+        return this.video;
     }
 
 }

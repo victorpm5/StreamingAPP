@@ -1,22 +1,21 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://spring.io/guides/gs-producing-web-service"
            targetNamespace="http://spring.io/guides/gs-producing-web-service" elementFormDefault="qualified">
 
-    <xs:element name="getVideoRequest">
+    <xs:element name="getVideosRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string"/>
+                <xs:element name="void" type="tns:void"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="getVideoResponse">
+    <xs:element name="getVideosResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="video" type="tns:video"/>
+                <xs:element name="video" minOccurs="0" maxOccurs="unbounded" type="tns:video"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-
 
     <xs:element name="filterVideosByTitleRequest">
         <xs:complexType>
@@ -52,15 +51,15 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="filterVideosByDateRequest">
+    <xs:element name="filterVideosByYearRequest">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="date" type="xs:date"/>
+                <xs:element name="year" type="xs:int"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="filterVideosByDateResponse">
+    <xs:element name="filterVideosByYearResponse">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="video" minOccurs="0" maxOccurs="unbounded" type="tns:video"/>
@@ -68,6 +67,10 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:complexType name="void">
+        <xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:complexType name="video">
         <xs:sequence>

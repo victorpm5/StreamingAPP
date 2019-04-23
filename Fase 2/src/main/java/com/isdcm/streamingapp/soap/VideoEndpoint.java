@@ -1,7 +1,7 @@
 package com.isdcm.streamingapp.soap;
 
 import io.spring.guides.gs_producing_web_service.*;
-import com.isdcm.streamingapp.soap.services.VideoService;
+import com.isdcm.streamingapp.soap.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -14,18 +14,16 @@ import java.util.List;
 public class VideoEndpoint {
     private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
 
-    private VideoRepository videoRepository;
-
-    @Autowired
-    public VideoEndpoint(VideoRepository videoRepository) {
-        this.videoRepository = videoRepository;
-    }
-
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getVideoRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getVideosRequest")
     @ResponsePayload
-    public GetVideoResponse getVideo(@RequestPayload GetVideoRequest request) {
-        GetVideoResponse response = new GetVideoResponse();
-        response.setVideo(videoRepository.findVideo(request.getName()));
+    public GetVideosResponse getVideo (@RequestPayload GetVideosRequest request) {
+
+        GetVideosResponse response = new GetVideosResponse();
+
+        List<Video> videos = VideoService.GetVideos();
+        for(int i = 0; i< videos.size(); ++i){
+            response.getVideo().add(videos.get(i));
+        }
 
         return response;
     }
@@ -58,13 +56,13 @@ public class VideoEndpoint {
         return response;
     }
 
-    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterVideosByDateRequest")
+    @PayloadRoot(namespace = NAMESPACE_URI, localPart = "filterVideosByYearRequest")
     @ResponsePayload
-    public FilterVideosByDateResponse getVideo(@RequestPayload FilterVideosByDateRequest request) {
+    public FilterVideosByYearResponse getVideo(@RequestPayload FilterVideosByYearRequest request) {
 
-        FilterVideosByDateResponse response = new FilterVideosByDateResponse();
+        FilterVideosByYearResponse response = new FilterVideosByYearResponse();
 
-        List<Video> videos = VideoService.GetVideosByDate(request.getDate());
+        List<Video> videos = VideoService.GetVideosByDate(request.getYear());
         for(int i = 0; i< videos.size(); ++i){
             response.getVideo().add(videos.get(i));
         }
