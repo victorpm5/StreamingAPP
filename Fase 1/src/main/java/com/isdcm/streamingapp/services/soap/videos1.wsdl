@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://spring.io/guides/gs-producing-web-service" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://spring.io/guides/gs-producing-web-service" targetNamespace="http://spring.io/guides/gs-producing-web-service">
+  <wsdl:types>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://spring.io/guides/gs-producing-web-service">
+
+    <xs:element name="getVideosRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="void" type="tns:void"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getVideosResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="video" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByTitleRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="title" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByTitleResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="video" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="filterVideosByAutorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="autor" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="filterVideosByAutorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="video" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByYearRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="year" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="filterVideosByYearResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="video" type="tns:video"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="void">
+        <xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="video">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="autor" type="xs:string"/>
+            <xs:element name="fechaCreacion" type="xs:dateTime"/>
+            <xs:element name="duracion" type="xs:float"/>
+            <xs:element name="numReproducciones" type="xs:int"/>
+            <xs:element name="descripcion" type="xs:string"/>
+            <xs:element name="formato" type="xs:string"/>
+            <xs:element name="url" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="filterVideosByTitleRequest">
+    <wsdl:part element="tns:filterVideosByTitleRequest" name="filterVideosByTitleRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="filterVideosByTitleResponse">
+    <wsdl:part element="tns:filterVideosByTitleResponse" name="filterVideosByTitleResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="filterVideosByAutorResponse">
+    <wsdl:part element="tns:filterVideosByAutorResponse" name="filterVideosByAutorResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="filterVideosByYearRequest">
+    <wsdl:part element="tns:filterVideosByYearRequest" name="filterVideosByYearRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVideosRequest">
+    <wsdl:part element="tns:getVideosRequest" name="getVideosRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getVideosResponse">
+    <wsdl:part element="tns:getVideosResponse" name="getVideosResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="filterVideosByAutorRequest">
+    <wsdl:part element="tns:filterVideosByAutorRequest" name="filterVideosByAutorRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="filterVideosByYearResponse">
+    <wsdl:part element="tns:filterVideosByYearResponse" name="filterVideosByYearResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="VideosPort">
+    <wsdl:operation name="filterVideosByTitle">
+      <wsdl:input message="tns:filterVideosByTitleRequest" name="filterVideosByTitleRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:filterVideosByTitleResponse" name="filterVideosByTitleResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="filterVideosByAutor">
+      <wsdl:input message="tns:filterVideosByAutorRequest" name="filterVideosByAutorRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:filterVideosByAutorResponse" name="filterVideosByAutorResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="filterVideosByYear">
+      <wsdl:input message="tns:filterVideosByYearRequest" name="filterVideosByYearRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:filterVideosByYearResponse" name="filterVideosByYearResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVideos">
+      <wsdl:input message="tns:getVideosRequest" name="getVideosRequest">
+    </wsdl:input>
+      <wsdl:output message="tns:getVideosResponse" name="getVideosResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="VideosPortSoap11" type="tns:VideosPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="filterVideosByTitle">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="filterVideosByTitleRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="filterVideosByTitleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="filterVideosByAutor">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="filterVideosByAutorRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="filterVideosByAutorResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="filterVideosByYear">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="filterVideosByYearRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="filterVideosByYearResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getVideos">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="getVideosRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getVideosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VideosPortService">
+    <wsdl:port binding="tns:VideosPortSoap11" name="VideosPortSoap11">
+      <soap:address location="http://localhost:8082/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

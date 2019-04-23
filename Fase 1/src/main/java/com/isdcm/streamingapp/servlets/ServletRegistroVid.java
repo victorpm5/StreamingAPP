@@ -25,6 +25,7 @@ public class ServletRegistroVid extends HttpServlet {
         try {
 
             Video video = new Video(
+                    null,
                     request.getParameter("title"),
                     request.getParameter("autor"),
                     formatter.parse(request.getParameter("fechaCreacion")),

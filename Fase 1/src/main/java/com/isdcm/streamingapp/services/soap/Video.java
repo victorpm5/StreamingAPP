@@ -19,6 +19,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="autor" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="fechaCreacion" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
@@ -37,6 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "video", propOrder = {
+    "id",
     "title",
     "autor",
     "fechaCreacion",
@@ -48,6 +50,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Video {
 
+    protected int id;
     @XmlElement(required = true)
     protected String title;
     @XmlElement(required = true)
@@ -63,6 +66,22 @@ public class Video {
     protected String formato;
     @XmlElement(required = true)
     protected String url;
+
+    /**
+     * Gets the value of the id property.
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Sets the value of the id property.
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
 
     /**
      * Gets the value of the title property.

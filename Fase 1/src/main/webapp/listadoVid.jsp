@@ -73,7 +73,15 @@
                     <td><%=videos.get(i).getNumReproducciones()%></td>
                     <td><%=videos.get(i).getDescripcion()%></td>
                     <td><%=videos.get(i).getFormato()%></td>
-                    <td><a target="_blank" href="<%=videos.get(i).getUrl()%>">Visualitzar!</a></td>
+                    <td>
+                        <form action="reproduccio" method="POST">
+                            <input type="hidden" name="id" value="<%=videos.get(i).getId()%>">
+                            <input type="hidden" name="url" value="<%=videos.get(i).getUrl()%>">
+                            <input type="hidden" name="titol" value="<%=videos.get(i).getTitle()%>">
+                            <button type="submit">Visualitzar</button>
+                            <%--<a target="_blank" href="/reproduccio?id=<%=videos.get(i).getId()%>">Visualitzar!</a>--%>
+                        </form>
+                    </td>
                 </tr>
                 <% } %>
             </table>
