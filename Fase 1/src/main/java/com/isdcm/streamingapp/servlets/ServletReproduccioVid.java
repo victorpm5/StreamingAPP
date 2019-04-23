@@ -22,8 +22,11 @@ public class ServletReproduccioVid extends HttpServlet {
 
         ReproduccioRestService.reprodueix(id);
 
+        Boolean youtube = url.contains("youtube.com");
+
         request.setAttribute("url", url.replace("watch?v=","embed/"));
         request.setAttribute("titol", titol);
+        request.setAttribute("youtue", youtube);
         RequestDispatcher a = request.getRequestDispatcher("reproduccio.jsp");
         a.forward(request, response);
     }

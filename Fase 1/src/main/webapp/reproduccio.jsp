@@ -22,10 +22,21 @@
 
                 <h2><%=request.getAttribute("titol")%></h2>
 
-                <iframe width="420" height="315"
-                        src="<%=request.getAttribute("url")%>">
-                </iframe>
+                <% String url = (String) request.getAttribute("url");
+                    if(url.contains("youtube.com")) {
+                %>
+                    <iframe width="420" height="315" frameborder="0" allowfullscreen  allow='autoplay'
+                            src="<%=url + "?autoplay=1"%>">
+                    </iframe>
 
+                <% } else { %>
+                    <video width="420" height="315" controls autoplay>
+                        <source src="<%=url%>" type="video/webm">
+                        Your browser does not support the video tag.
+                    </video>
+                <% } %>
+
+                <br>
                 <a href="./listadoVid">Llista de vídeos</a>
 
             </div>
