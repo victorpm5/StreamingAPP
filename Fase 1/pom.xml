@@ -60,6 +60,12 @@
          <version>9.0.16</version>
      </dependency>
 
+      <dependency>
+          <groupId>org.apache.axis2</groupId>
+          <artifactId>axis2-java2wsdl</artifactId>
+          <version>1.6.2</version>
+      </dependency>
+
    <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>

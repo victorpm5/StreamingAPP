@@ -1,9 +1,7 @@
 package com.isdcm.streamingapp.servlets;
 
-import com.isdcm.streamingapp.models.Video;
-import com.isdcm.streamingapp.services.VideoService;
+import com.isdcm.streamingapp.services.soap.*;
 import org.apache.commons.lang3.StringUtils;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "ServletListadoVid", urlPatterns = "/listadoVid")
@@ -31,13 +27,34 @@ public class ServletListadoVid extends HttpServlet {
             a.forward(request, response);
         }
 
+        VideosPortService portService = new VideosPortService();
+        VideosPort port = portService.getVideosPortSoap11();
+        List<Video> videos;
 
-        List<Video> videos = new ArrayList<Video>();
-
-        try {
-            videos = VideoService.GetVideos();
-        } catch (SQLException | ClassNotFoundException e) {
-            response.sendRedirect("listadoVid.jsp?error=true&msg="+e.getMessage());
+        if(request.getParameter("filter")!=null){
+            if(request.getParameter("filter").equals("title")){
+                FilterVideosByTitleRequest requestVideos = new FilterVideosByTitleRequest();
+                requestVideos.setTitle(request.getParameter("value"));
+                FilterVideosByTitleResponse responseVideos = port.filterVideosByTitle(requestVideos);
+                videos = responseVideos.getVideo();
+            }
+            else if (request.getParameter("filter").equals("autor")){
+                FilterVideosByAutorRequest requestVideos = new FilterVideosByAutorRequest();
+                requestVideos.setAutor(request.getParameter("value"));
+                FilterVideosByAutorResponse responseVideos = port.filterVideosByAutor(requestVideos);
+                videos = responseVideos.getVideo();
+            }
+            else {
+                FilterVideosByYearRequest requestVideos = new FilterVideosByYearRequest();
+                requestVideos.setYear(Integer.parseInt(request.getParameter("value")));
+                FilterVideosByYearResponse responseVideos = port.filterVideosByYear(requestVideos);
+                videos = responseVideos.getVideo();
+            }
+        }
+        else{
+            GetVideosRequest requestVideos = new GetVideosRequest();
+            GetVideosResponse responseVideos = port.getVideos(requestVideos);
+            videos = responseVideos.getVideo();
         }
 
         request.setAttribute("videos", videos);
@@ -45,4 +62,19 @@ public class ServletListadoVid extends HttpServlet {
         a.forward(request, response);
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        if(request.getParameter("title")!=null && request.getParameter("valuetitle")!=null){
+            response.sendRedirect("listadoVid?filter=title&value="+request.getParameter("valuetitle"));
+        }
+        else if(request.getParameter("autor")!=null && request.getParameter("valueautor")!=null){
+            response.sendRedirect("listadoVid?filter=autor&value="+request.getParameter("valueautor"));
+        }
+        else if(request.getParameter("year")!=null && request.getParameter("valueyear")!=null && !request.getParameter("valueyear").equals("") && StringUtils.isNumeric(request.getParameter("valueyear"))){
+            response.sendRedirect("listadoVid?filter=year&value="+request.getParameter("valueyear"));
+        }
+        else {
+            response.sendRedirect("listadoVid");
+        }
+    }
 }

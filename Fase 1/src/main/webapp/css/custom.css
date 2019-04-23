@@ -22,3 +22,12 @@
     margin-top: 5%;
     margin-bottom: 5%;
 }
+
+.filterContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.margin-group{
+    margin: 10px;
+}

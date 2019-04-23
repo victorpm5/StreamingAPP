@@ -1,4 +1,4 @@
-<%@ page import="com.isdcm.streamingapp.models.Video" %>
+<%@ page import="com.isdcm.streamingapp.services.soap.Video" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.apache.commons.lang3.StringUtils" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -26,6 +26,29 @@
 
             <h2>Llistat de vídeos</h2>
 
+            <div>
+                <h4>Filtres:</h4>
+                <form action="listadoVid" method="POST">
+                    <div class="filterContainer">
+                        <div class="form-group input-group margin-group">
+                            <input name="valuetitle" class="form-control" placeholder="Introdueix el títol del vídeo" type="text">
+                            <button name="title" type="submit" class="btn btn-primary btn-block">Filtrar per títol</button>
+                        </div>
+
+                        <div class="form-group input-group margin-group">
+                            <input name="valueautor" class="form-control" placeholder="Introdueix l'autor del vídeo" type="text">
+                            <button name="autor" type="submit" class="btn btn-primary btn-block">Filtar per autor</button>
+                        </div>
+
+                        <div class="form-group input-group margin-group">
+                            <input name="valueyear" class="form-control" placeholder="Introdueix la data de creació" type="text">
+                            <button name="year" type="submit" class="btn btn-primary btn-block">Filtrar per any</button>
+                        </div>
+                    </div>
+                    <button name="all" type="submit" class="btn btn-primary btn-block margin-group">Borrar Filtres</button>
+                </form>
+            </div>
+
             <table class="table video-table">
                 <thead class="thead-dark">
                 <tr>
@@ -45,7 +68,7 @@
                 <tr>
                     <td><%=videos.get(i).getTitle()%></td>
                     <td><%=videos.get(i).getAutor()%></td>
-                    <td><%=dt.format(videos.get(i).getFechaCreacion())%></td>
+                    <td><%=dt.format(videos.get(i).getFechaCreacion().toGregorianCalendar().getTime())%></td>
                     <td><%=videos.get(i).getDuracion()%> min</td>
                     <td><%=videos.get(i).getNumReproducciones()%></td>
                     <td><%=videos.get(i).getDescripcion()%></td>
@@ -55,7 +78,9 @@
                 <% } %>
             </table>
 
-            <a href="./registroVid.jsp">Afegeix un vídeo!</a>
+            <div style="display:flex; justify-content: space-between;">
+                <a href="./registroVid.jsp">Afegeix un vídeo!</a>
+            </div>
 
         </div>
     </div>

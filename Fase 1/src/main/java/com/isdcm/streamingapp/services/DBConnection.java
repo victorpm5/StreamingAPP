@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class DBConnection {
 
     private static Connection con;
-    private static String url = "jdbc:sqlite:streaming.db";
+    private static String url = "jdbc:sqlite:C:\\Users\\Public/streaming.db";
 
     public static Connection getConnection() throws ClassNotFoundException, SQLException {
             Class.forName("org.sqlite.JDBC");
