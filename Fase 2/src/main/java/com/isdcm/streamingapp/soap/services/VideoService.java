@@ -44,14 +44,23 @@ public class VideoService {
     }
 
     public static List<Video> GetVideosByTitle(String title){
+
+        System.out.println("Cerca videos per Títol:" + title);
+
         return getVideos(title, GetVideosByTitle);
     }
 
     public static List<Video> GetVideosByAutor(String autor){
+
+        System.out.println("Cerca videos per Autor:" + autor);
+
         return getVideos(autor, GetVideosByAutor);
     }
 
     public static List<Video> GetVideosByDate(int year) {
+
+        System.out.println("Cerca videos per Any:" + year);
+
         List<Video> videos = new ArrayList<Video>();
         try {
             Connection conn = DBConnection.getConnection();
