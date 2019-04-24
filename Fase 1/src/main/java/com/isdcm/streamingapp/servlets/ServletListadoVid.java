@@ -31,31 +31,9 @@ public class ServletListadoVid extends HttpServlet {
         VideosPort port = portService.getVideosPortSoap11();
         List<Video> videos;
 
-        if(request.getParameter("filter")!=null){
-            if(request.getParameter("filter").equals("title")){
-                FilterVideosByTitleRequest requestVideos = new FilterVideosByTitleRequest();
-                requestVideos.setTitle(request.getParameter("value"));
-                FilterVideosByTitleResponse responseVideos = port.filterVideosByTitle(requestVideos);
-                videos = responseVideos.getVideo();
-            }
-            else if (request.getParameter("filter").equals("autor")){
-                FilterVideosByAutorRequest requestVideos = new FilterVideosByAutorRequest();
-                requestVideos.setAutor(request.getParameter("value"));
-                FilterVideosByAutorResponse responseVideos = port.filterVideosByAutor(requestVideos);
-                videos = responseVideos.getVideo();
-            }
-            else {
-                FilterVideosByYearRequest requestVideos = new FilterVideosByYearRequest();
-                requestVideos.setYear(Integer.parseInt(request.getParameter("value")));
-                FilterVideosByYearResponse responseVideos = port.filterVideosByYear(requestVideos);
-                videos = responseVideos.getVideo();
-            }
-        }
-        else{
-            GetVideosRequest requestVideos = new GetVideosRequest();
-            GetVideosResponse responseVideos = port.getVideos(requestVideos);
-            videos = responseVideos.getVideo();
-        }
+        GetVideosRequest requestVideos = new GetVideosRequest();
+        GetVideosResponse responseVideos = port.getVideos(requestVideos);
+        videos = responseVideos.getVideo();
 
         request.setAttribute("videos", videos);
         RequestDispatcher a = request.getRequestDispatcher("listadoVid.jsp");
@@ -64,14 +42,45 @@ public class ServletListadoVid extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+
+        VideosPortService portService = new VideosPortService();
+        VideosPort port = portService.getVideosPortSoap11();
+        List<Video> videos;
+
         if(request.getParameter("title")!=null && request.getParameter("valuetitle")!=null){
-            response.sendRedirect("listadoVid?filter=title&value="+request.getParameter("valuetitle"));
+
+            FilterVideosByTitleRequest requestVideos = new FilterVideosByTitleRequest();
+            requestVideos.setTitle(request.getParameter("valuetitle"));
+            FilterVideosByTitleResponse responseVideos = port.filterVideosByTitle(requestVideos);
+            videos = responseVideos.getVideo();
+
+            request.setAttribute("videos", videos);
+            RequestDispatcher a = request.getRequestDispatcher("listadoVid.jsp");
+            a.forward(request, response);
         }
         else if(request.getParameter("autor")!=null && request.getParameter("valueautor")!=null){
-            response.sendRedirect("listadoVid?filter=autor&value="+request.getParameter("valueautor"));
+
+            FilterVideosByAutorRequest requestVideos = new FilterVideosByAutorRequest();
+            requestVideos.setAutor(request.getParameter("valueautor"));
+            FilterVideosByAutorResponse responseVideos = port.filterVideosByAutor(requestVideos);
+            videos = responseVideos.getVideo();
+
+            request.setAttribute("videos", videos);
+            RequestDispatcher a = request.getRequestDispatcher("listadoVid.jsp");
+            a.forward(request, response);
         }
         else if(request.getParameter("year")!=null && request.getParameter("valueyear")!=null && !request.getParameter("valueyear").equals("") && StringUtils.isNumeric(request.getParameter("valueyear"))){
-            response.sendRedirect("listadoVid?filter=year&value="+request.getParameter("valueyear"));
+
+            FilterVideosByYearRequest requestVideos = new FilterVideosByYearRequest();
+            requestVideos.setYear(Integer.parseInt(request.getParameter("valueyear")));
+            FilterVideosByYearResponse responseVideos = port.filterVideosByYear(requestVideos);
+            videos = responseVideos.getVideo();
+
+            request.setAttribute("videos", videos);
+            RequestDispatcher a = request.getRequestDispatcher("listadoVid.jsp");
+            a.forward(request, response);
         }
         else {
             response.sendRedirect("listadoVid");

@@ -26,6 +26,8 @@ public class ServletUsuarios extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+
 		if(request.getParameter("action").equals("LOGIN")){
 
 			String username = request.getParameter("username");

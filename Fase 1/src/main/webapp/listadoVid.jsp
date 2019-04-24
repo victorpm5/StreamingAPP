@@ -41,7 +41,7 @@
                         </div>
 
                         <div class="form-group input-group margin-group">
-                            <input name="valueyear" class="form-control" placeholder="Introdueix la data de creació" type="text">
+                            <input name="valueyear" class="form-control" placeholder="Introdueix l'any creació" type="number">
                             <button name="year" type="submit" class="btn btn-primary btn-block">Filtrar per any</button>
                         </div>
                     </div>
