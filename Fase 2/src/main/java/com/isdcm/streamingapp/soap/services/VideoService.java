@@ -113,6 +113,7 @@ public class VideoService {
             XMLGregorianCalendar gDateUnformated = DatatypeFactory.newInstance().newXMLGregorianCalendar(gCal);
 
             Video video = new Video();
+            video.setId(result.getInt("id"));
             video.setTitle(result.getString("title"));
             video.setAutor(result.getString("autor"));
             video.setFechaCreacion(gDateUnformated);
