@@ -16,8 +16,8 @@ import java.util.*;
 public class VideoService {
 
     private static final String GetAllVideos = "SELECT * FROM Video";
-    private static final String GetVideosByTitle = "SELECT * FROM Video WHERE title=?";
-    private static final String GetVideosByAutor = "SELECT * FROM Video WHERE autor=?";
+    private static final String GetVideosByTitle = "SELECT * FROM Video WHERE title LIKE ?";
+    private static final String GetVideosByAutor = "SELECT * FROM Video WHERE autor lIKE ?";
     private static final String GetVideosByDate = "SELECT * FROM Video WHERE strftime('%Y',datetime(fechaCreacion/1000, 'unixepoch', 'localtime'))=?";
 
     public static List<Video> GetVideos(){
@@ -93,7 +93,7 @@ public class VideoService {
             PreparedStatement statement = conn.prepareStatement(getVideosByTitle);
             statement.setQueryTimeout(30);
 
-            statement.setString(1,title);
+            statement.setString(1,"%"+title+"%");
 
             executeGetVideosQuery(videos, statement);
 
