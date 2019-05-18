@@ -1,6 +1,7 @@
 package com.isdcm.streamingapp.servlets;
 
 import com.isdcm.streamingapp.services.DocumentService;
+import com.isdcm.streamingapp.services.SecureContentService;
 import com.isdcm.streamingapp.services.SecureXMLService;
 import com.isdcm.streamingapp.services.soap.*;
 import org.apache.commons.lang3.StringUtils;
@@ -85,6 +86,9 @@ public class ServletListadoVid extends HttpServlet {
             a.forward(request, response);
         } else if (request.getParameter("xml") != null){
             SecureXMLService.testEncriptionDeciption();
+            response.sendRedirect("listadoVid");
+        } else if (request.getParameter("file") != null){
+            SecureContentService.testEncriptionDeciption();
             response.sendRedirect("listadoVid");
         }
         else {

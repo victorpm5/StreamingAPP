@@ -52,6 +52,8 @@ public class SecureXMLService {
 
         try {
 
+            System.out.println("Testing XML encryption and decryption");
+
             org.apache.xml.security.Init.init();
             SecretKey secretKey = getSecretKey();
 

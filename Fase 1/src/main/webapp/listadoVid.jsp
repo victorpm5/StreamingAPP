@@ -91,10 +91,9 @@
             </div>
 
             <form action="listadoVid" method="POST">
-                <input type="hidden" name="xml" value="true">
-                <button type="submit" class="btn btn-primary">Test XML Security</button>
+                <button  name="xml" type="submit" class="btn btn-primary">Test XML Security</button>
+                <button  name="file" type="submit" class="btn btn-primary">Test Content Security</button>
             </form>
-
         </div>
     </div>
 
