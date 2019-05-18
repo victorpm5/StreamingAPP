@@ -1,5 +1,7 @@
 package com.isdcm.streamingapp.servlets;
 
+import com.isdcm.streamingapp.services.DocumentService;
+import com.isdcm.streamingapp.services.SecureXMLService;
 import com.isdcm.streamingapp.services.soap.*;
 import org.apache.commons.lang3.StringUtils;
 import javax.servlet.RequestDispatcher;
@@ -81,6 +83,9 @@ public class ServletListadoVid extends HttpServlet {
             request.setAttribute("videos", videos);
             RequestDispatcher a = request.getRequestDispatcher("listadoVid.jsp");
             a.forward(request, response);
+        } else if (request.getParameter("xml") != null){
+            SecureXMLService.testEncriptionDeciption();
+            response.sendRedirect("listadoVid");
         }
         else {
             response.sendRedirect("listadoVid");
