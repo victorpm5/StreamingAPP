@@ -39,13 +39,13 @@ public class Main {
         PDP pdp = new PDP(new PDPConfig(pdpConfig.getAttributeFinder(), pdpConfig.getPolicyFinder(), null, true));
 
         String requestFile = "C:\\projects\\Universitat\\isdcm\\StreamingAPP\\balanaAuth\\src\\resource\\requests\\XACMLRequest" + requestID + ".xml";
-        String response = pdp.evaluate(getXMLFromFilePath(requestFile));
+        String response = pdp.evaluate(getXMLFile(requestFile));
 
         System.out.println("Resultat:");
         System.out.println(response);
     }
 
-    private static String getXMLFromFilePath(String path) throws Exception {
+    private static String getXMLFile(String path) throws Exception {
         DocumentBuilderFactory builder = DocumentBuilderFactory.newInstance();
         DocumentBuilder docBuilder = builder.newDocumentBuilder();
         Document document = docBuilder.parse(path);
