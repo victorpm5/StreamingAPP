@@ -36,7 +36,7 @@ public class main {
 
         ResponseCtx response = pdp.evaluate(request);
 
-        System.out.println(response.getResults());
+        System.out.println("Resultado de la petición " + peticion + " con la política " + politica + " :");
 
         PrintStream out = new PrintStream(System.out);
 
