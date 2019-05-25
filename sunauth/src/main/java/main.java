@@ -18,17 +18,17 @@ public class main {
 
     public static void main(String args[]) throws Exception {
         System.out.println("Inicio Programa");
-        Scanner reader = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Número de política: ");
-        int politica = reader.nextInt();
+        int politica = scanner.nextInt();
 
         String pathPolitica = "C:\\Users\\Public\\policy\\XACMLPolicy" + politica + ".xml";
 
         PDP pdp = creaPolitica(pathPolitica);
 
         System.out.println("Número de Petición: ");
-        int peticion = reader.nextInt();
+        int peticion = scanner.nextInt();
 
         String pathPeticion = "C:\\Users\\Public\\requests\\XACMLRequest" + peticion + ".xml";
 
