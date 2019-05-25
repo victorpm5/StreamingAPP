@@ -90,6 +90,10 @@
                 <a href="./registroVid.jsp">Afegeix un vídeo!</a>
             </div>
 
+            <form action="listadoVid" method="POST">
+                <button  name="xml" type="submit" class="btn btn-primary">Test XML Security</button>
+                <button  name="file" type="submit" class="btn btn-primary">Test Content Security</button>
+            </form>
         </div>
     </div>
 
